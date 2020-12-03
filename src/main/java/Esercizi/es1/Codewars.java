@@ -130,21 +130,22 @@ public class Codewars {
 				}
 
 				else {
-					int fact = k;
-					int count = i;
+					int fact = 1;
+					
 					// devo fare fattoriale di fact ma solo per il numero di volte indicato da k
-					while (count > 1) {
-
-						fact = fact * (fact - count + 1);
-						count--;
+					for (int j = 0; j < k; j++) {
+						fact = fact * j;
 					}
 
 					int fact2 = 1;
 					for (int j = 1; j <= i; j++) { // da controllare la fine del loop, not sure
 						fact2 = fact2 * j;
 					}
-
-					res.add(fact / fact2);
+					int fact3 = 1;
+					for (int j = 0; j < k-i; j++) {
+						fact3 = fact3*j;
+					}
+					res.add(fact / (fact2*fact3));
 
 				}
 

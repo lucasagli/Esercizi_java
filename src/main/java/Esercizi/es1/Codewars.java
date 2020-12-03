@@ -121,10 +121,10 @@ public class Codewars {
 	public int[] generate(int level) {
 		List<Integer> res = new ArrayList<Integer>();
 
-		for (int k = 1; k < level+1; k++) {
+		for (int k = 0; k < level; k++) {
 
-			for (int i = 1; i <= k ; i++) {
-				if (i == 1) {
+			for (int i = 0; i <= k ; i++) {
+				if (i == 0) {
 
 					res.add(1);
 				}

@@ -159,4 +159,20 @@ public class Codewars {
 		}
 		return res2;
 	}
+	
+	public int[] sort2(int[] data) {
+		for (int i = 0; i < data.length; i++) {
+			
+			for (int j = i+1; j < data.length; j++) {
+				if (data[j]< data[i]) {
+			
+					int swap = data[i];
+					data[i] = data[j];
+					data[j] = swap;
+				}
+			}
+			
+		}
+		return data;
+	}
 }

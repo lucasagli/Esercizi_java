@@ -73,5 +73,13 @@ public class CodewarsTest {
             final int[] ints = {1, 1, 1, 1, 2, 1};
             assertThat(cod.generate(3), is(ints));
         }
+        @Test
+        public void test5() {
+        	Codewars cod = new Codewars();
+            final int[] ints = {1, 2, 3, 4, 5};
+            int[] actual = new int[] {5, 3, 1, 2, 4};
+            assertThat(cod.sort2(actual), is(ints));
+        }
+        
  
 }

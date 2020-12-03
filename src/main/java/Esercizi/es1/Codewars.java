@@ -133,7 +133,7 @@ public class Codewars {
 					int fact = 1;
 					
 					// devo fare fattoriale di fact ma solo per il numero di volte indicato da k
-					for (int j = 0; j < k; j++) {
+					for (int j = 1; j <= k; j++) {
 						fact = fact * j;
 					}
 
@@ -142,7 +142,7 @@ public class Codewars {
 						fact2 = fact2 * j;
 					}
 					int fact3 = 1;
-					for (int j = 0; j < k-i; j++) {
+					for (int j = 1; j <= k-i; j++) {
 						fact3 = fact3*j;
 					}
 					res.add(fact / (fact2*fact3));

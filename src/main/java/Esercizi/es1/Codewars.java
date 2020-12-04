@@ -123,7 +123,7 @@ public class Codewars {
 
 		for (int k = 0; k < level; k++) {
 
-			for (int i = 0; i <= k ; i++) {
+			for (int i = 0; i <= k; i++) {
 				if (i == 0) {
 
 					res.add(1);
@@ -131,7 +131,7 @@ public class Codewars {
 
 				else {
 					double fact = 1;
-					
+
 					// devo fare fattoriale di fact ma solo per il numero di volte indicato da k
 					for (int j = 1; j <= k; j++) {
 						fact = fact * j;
@@ -142,10 +142,10 @@ public class Codewars {
 						fact2 = fact2 * j;
 					}
 					double fact3 = 1;
-					for (int j = 1; j <= k-i; j++) {
-						fact3 = fact3*j;
+					for (int j = 1; j <= k - i; j++) {
+						fact3 = fact3 * j;
 					}
-					int result = (int)(fact / (fact2*fact3));
+					int result = (int) (fact / (fact2 * fact3));
 					res.add(result);
 
 				}
@@ -159,20 +159,64 @@ public class Codewars {
 		}
 		return res2;
 	}
-	
+
 	public int[] sort2(int[] data) {
 		for (int i = 0; i < data.length; i++) {
-			
-			for (int j = i+1; j < data.length; j++) {
-				if (data[j]< data[i]) {
-			
+
+			for (int j = i + 1; j < data.length; j++) {
+				if (data[j] < data[i]) {
+
 					int swap = data[i];
 					data[i] = data[j];
 					data[j] = swap;
 				}
 			}
-			
+
 		}
 		return data;
+	}
+
+	// epidemia
+	public int epidemic(int tm, int n, int s0, int i0, double b, double a) {
+		double r0 = 0;
+		double dt = (double) tm / n;
+		double s = 0;
+		double i = i0;
+		double r = 0;
+		List<Double> rec = new ArrayList<Double>();
+		List<Double> sus = new ArrayList<Double>();
+		List<Double> inf = new ArrayList<Double>();
+		rec.add(r0);
+		sus.add((double)s0);
+		inf.add((double)i0);
+		s = (s0 - dt * b * s0 * i0);
+		i = (i0 + dt * (b * s0 * i0 - a * i0));
+		r = (r + dt * i0 * a);
+		rec.add(r);
+		sus.add(s);
+		inf.add(i);
+		int j = 1;
+		while (i >= inf.get(j-1)) {
+//    	  (I)    S[k+1] = S[k] - dt * b * S[k] * I[k]
+//    	  (II)   I[k+1] = I[k] + dt * (b * S[k] * I[k] - a * I[k])
+//    			  (III)  R[k+1] = R[k] + dt * I[k] *a
+			
+			
+			s =  (sus.get(j) - dt * b * sus.get(j) * inf.get(j));
+			i =  (inf.get(j) + dt * (b * sus.get(j) * inf.get(j) - a * inf.get(j)));
+			r =  (rec.get(j) + dt * inf.get(j) * a);
+			sus.add(s);
+			inf.add(i);
+			rec.add(r);
+			j++;
+			
+		}
+		double max = 0;
+		for (int k = 0; k < inf.size(); k++) {
+			if ( inf.get(k) > max ) {
+				max = inf.get(k); 
+			}
+		}
+		return (int)max;
 	}
 }

@@ -9,7 +9,10 @@ import java.util.Hashtable;
 import java.math.*;
 import java.util.HashMap;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
+import java.math.RoundingMode;
+
 
 public class Codewars {
 
@@ -219,4 +222,109 @@ public class Codewars {
 		}
 		return (int)max;
 	}
+	
+public static int longestSlideDown(int[][] pyramid) {
+        int sum = pyramid[0][0];
+        int row = pyramid.length;
+        int col = pyramid[0].length;
+        int count = 0;
+        for (int i = 1; i < row; i++) {
+        	for (int j = 0; j <= i; j++) {
+				if( j == count ) {
+					if (pyramid[i][count] > pyramid[i][count+1]) {
+						sum += pyramid[i][count];
+						break;
+						
+					}
+					else {
+						sum += pyramid[i][count+1];
+						count += 1;
+						break;
+					}
+				}
+			}
+			
+		}
+        return sum;
+        
+    }
+ public static void main(String[] args) {
+//	int[][] pyramid = new int[][] {{3}, {7, 4}, {2, 4, 6}, {8, 5, 9, 3}};
+//	int c = Codewars.longestSlideDown(pyramid);
+//	 int n = 719;
+//	 int l = 983;
+//	 System.out.println(Codewars.isPrime());
+	 long[] result =  Codewars.gap(10, 300, 400);
+	 System.out.println(Arrays.toString(result));
+	 
 }
+ 
+ public static long digPow (int n, int p) {
+	 List<Integer> result = new ArrayList<Integer>();
+	 int number = n;
+	 while (n>0) {
+		 result.add(n%10);
+		 n /= 10;
+	 }
+	 long sum = 0;
+	 Collections.reverse(result);
+	 for (int i = p; i < p+ result.size(); i++) {
+		sum += Math.pow(result.get(i-p), i);
+	}
+	 if(sum % number == 0) {
+		 return sum/number;
+	 }
+	 else {
+		 return -1;
+	 }
+ }
+ 
+ public static boolean isPrime(long p) {
+	 for (int i = 2; i <= p/2; i++) {
+		if ( p%i == 0) {
+			return false;
+		}
+		
+	}
+	 return true;
+	 
+ }
+ 
+ 
+ public static long[] gap(int g, long m, long n) {
+	 int count = 0;
+	 long num1 = 0;
+	 long num2 = 0;
+	 for (long j = m; j <= n; j++) {
+		if ( Codewars.isPrime(j)  && count == 0) {
+			num1 = j;
+			count = 1;
+		}
+		else if ( Codewars.isPrime(j) && count == 1) {
+			num2 = j;
+			count = 2;
+		}
+		
+		if (count == 2 && num2 - num1 == g) {
+			return new long[] {num1 , num2};
+		}
+		else if (count == 2) {
+			num1 = num2;
+			count = 1;
+		}
+		
+	}
+	 return null;
+    	 
+    	 
+    	 
+//		long j = i + g;
+//		if (Codewars.isPrime(i) && Codewars.isPrime(j)) {
+//			
+//			return new long[] { i , j };
+//		}
+		
+	}
+ }
+	
+
